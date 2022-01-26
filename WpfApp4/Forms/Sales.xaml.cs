@@ -32,23 +32,9 @@ namespace WpfApp4.Forms
                 else
                     filters.Add(new Filter { product = c, check = false });
             }
-            viewSource = new CollectionViewSource();
-            viewSource.Source = productSales;
-            viewSource.Filter += ViewSource_Filter;
-            
-            dgSale.ItemsSource = viewSource.View;
-            filtr.ItemsSource = filters;
-        }
 
-        private void ViewSource_Filter(object sender, FilterEventArgs e)
-        {
-            foreach(var fil in filters.Where(p=>p.check == true))
-            {
-                if ((e.Item as ProductSale).Product.Title == fil.product.Title)
-                {
-                    //e.Accepted;
-                }
-            }
+            dgSale.ItemsSource = context.aGetContext().ProductSale.Where(p=>p.ProductID == _product.ID).ToList();
+            filtr.ItemsSource = filters;
         }
 
         CollectionViewSource viewSource;
@@ -56,6 +42,12 @@ namespace WpfApp4.Forms
         {
             public Product product { get; set; }
             public bool check { get; set; }
+        }
+
+        private void filtr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var product = filtr.SelectedItem as Filter;
+            dgSale.ItemsSource = context.aGetContext().ProductSale.Where(p=>p.ProductID == product.product.ID).ToList();
         }
     }
 }

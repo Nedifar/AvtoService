@@ -17,9 +17,10 @@
                 <DataGridTextColumn Header="Дата" Binding="{Binding SaleDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                 <DataGridTextColumn Header="Название" Binding="{Binding Product.Title}"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="gg" Binding="{Binding SaleDate, StringFormat=\{0:dd:MM:yyyy\}}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="filtr" VerticalAlignment="Center" HorizontalAlignment="Center" >
+        <ComboBox x:Name="filtr" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="filtr_SelectionChanged" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <CheckBox Content="{Binding product.Title}" IsChecked="{Binding check}">

@@ -12,20 +12,25 @@ namespace WpfApp4
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class context : DbContext
     {
-        public static context _context;
+        private static context _context;
         public context()
             : base("name=context")
         {
         }
-    
+        public static context aGetContext()
+        {
+            if (_context == null)
+                _context = new context();
+            return _context;
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<ClientService> ClientService { get; set; }
         public virtual DbSet<DocumentByService> DocumentByService { get; set; }

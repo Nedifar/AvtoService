@@ -30,7 +30,13 @@ namespace WpfApp4
         public string MainImagePath { get; set; }
         public bool IsActive { get; set; }
         public Nullable<int> ManufacturerID { get; set; }
-    
+        public string getPath
+        {
+            get
+            {
+                return @"Y:\4пк2\!!!ТоварыАвтосервиса\Сессия 1\products_a_import\" + MainImagePath;
+            }
+        }
         public virtual Manufacturer Manufacturer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPhoto> ProductPhoto { get; set; }

@@ -36,6 +36,8 @@ namespace WpfApp4.Forms
             filtr.ItemsSource = str;
             cbSort.ItemsSource = new string[] { "Не выбрано", "По убыванию", "По возрастанию" };
             Counter(Products.Count());
+            cbSort.SelectedIndex = 0;
+            filtr.SelectedIndex = 0;
         }
 
         private void search_TextChanged(object sender, TextChangedEventArgs e)

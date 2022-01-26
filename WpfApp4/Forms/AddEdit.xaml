@@ -37,9 +37,18 @@
         </Border>
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
             <ListView x:Name="lvDop" ItemsSource="{Binding Product1}">
+                <ListView.Style>
+                    <Style TargetType="{x:Type ListView}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Product1.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Style>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Button Width="50" Height="50" Click="clAdd">
+                        <Button Width="50" Height="50" Click="clAdd" >
                             <Image Width="50" Height="50" Source="{Binding getPath}">
                                 <Image.ToolTip>
                                     <StackPanel>
